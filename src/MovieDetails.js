@@ -32,6 +32,8 @@ export function MovieDetails({
     Genre: genre,
   } = movie
 
+  console.log(title)
+
   function handleAdd() {
     const newWatchedMovie = {
       imdbID: selectedId,
@@ -61,6 +63,14 @@ export function MovieDetails({
       getMovieDetails()
     },
     [selectedId]
+  )
+
+  useEffect(
+    function () {
+      if (!title) return
+      document.title = `Movie | ${title}`
+    },
+    [title]
   )
 
   return (
