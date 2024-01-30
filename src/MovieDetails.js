@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
-import StarRating from './components/StarRating'
-import { KEY } from './App'
-import { Loader } from './Loader'
+import { useEffect, useState } from "react";
+import StarRating from "./components/StarRating";
+import { KEY } from "./App";
+import { Loader } from "./Loader";
 
 export function MovieDetails({
   selectedId,
@@ -9,15 +9,15 @@ export function MovieDetails({
   onAddWatched,
   watched,
 }) {
-  const [movie, setMovie] = useState({})
-  const [isLoading, setIsLoading] = useState(false)
-  const [userRating, setUserRating] = useState('')
+  const [movie, setMovie] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [userRating, setUserRating] = useState("");
 
-  const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId)
+  const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
 
   const watchedUserRating = watched.find(
     (movie) => movie.imdbID === selectedId
-  )?.userRating
+  )?.userRating;
 
   const {
     Title: title,
@@ -30,9 +30,9 @@ export function MovieDetails({
     Actors: actors,
     Director: director,
     Genre: genre,
-  } = movie
+  } = movie;
 
-  console.log(title)
+  console.log(title);
 
   function handleAdd() {
     const newWatchedMovie = {
@@ -41,37 +41,41 @@ export function MovieDetails({
       year,
       poster,
       imdbRating: Number(imdbRating),
-      runtime: Number(runtime.split(' ').at(0)),
+      runtime: Number(runtime.split(" ").at(0)),
       userRating,
-    }
+    };
 
-    onAddWatched(newWatchedMovie)
-    onCloseMovie()
+    onAddWatched(newWatchedMovie);
+    onCloseMovie();
   }
 
   useEffect(
     function () {
       async function getMovieDetails() {
-        setIsLoading(true)
+        setIsLoading(true);
         const res = await fetch(
           `http://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`
-        )
-        const data = await res.json()
-        setMovie(data)
-        setIsLoading(false)
+        );
+        const data = await res.json();
+        setMovie(data);
+        setIsLoading(false);
       }
-      getMovieDetails()
+      getMovieDetails();
     },
     [selectedId]
-  )
+  );
 
   useEffect(
     function () {
-      if (!title) return
-      document.title = `Movie | ${title}`
+      if (!title) return;
+      document.title = `Movie | ${title}`;
+
+      return function () {
+        document.title = "🍿usePopcorn";
+      };
     },
     [title]
-  )
+  );
 
   return (
     <div className="details">
@@ -127,5 +131,5 @@ export function MovieDetails({
         </>
       )}
     </div>
-  )
+  );
 }
