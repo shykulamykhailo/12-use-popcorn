@@ -32,7 +32,10 @@ export function MovieDetails({
     Genre: genre,
   } = movie;
 
-  console.log(title);
+  /* eslint-disable */
+  // if (imdbRating > 8) [isTop, setIsTop] = useState(true);
+
+  if (imdbRating > 8) return <p>Greatest Ever</p>;
 
   function handleAdd() {
     const newWatchedMovie = {
