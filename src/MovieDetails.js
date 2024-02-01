@@ -32,10 +32,23 @@ export function MovieDetails({
     Genre: genre,
   } = movie;
 
-  /* eslint-disable */
   // if (imdbRating > 8) [isTop, setIsTop] = useState(true);
 
-  if (imdbRating > 8) return <p>Greatest Ever</p>;
+  // if (imdbRating > 8) return <p>Greatest Ever</p>;
+
+  // const [isTop, setIsTop] = useState(imdbRating > 8);
+  // console.log(isTop);
+  // useEffect(
+  //   function () {
+  //     setIsTop(imdbRating > 8);
+  //   },
+  //   [imdbRating]
+  // );
+
+  const isTop = imdbRating > 8;
+  console.log(isTop);
+
+  // const [avgRating, setAvgRating] = useState(0);
 
   function handleAdd() {
     const newWatchedMovie = {
@@ -49,7 +62,10 @@ export function MovieDetails({
     };
 
     onAddWatched(newWatchedMovie);
-    onCloseMovie();
+    //    onCloseMovie();
+    //   setAvgRating(Number(imdbRating));
+    //   setAvgRating(avgRating(avgRating + userRating) / 2);
+    //
   }
 
   useEffect(
@@ -120,6 +136,7 @@ export function MovieDetails({
               </p>
             </div>
           </header>
+          {/* <p>{avgRating}</p> */}
 
           <section>
             <div className="rating">
