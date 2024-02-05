@@ -1,4 +1,12 @@
+import { useEffect } from "react";
+
 export function Search({ query, setQuery }) {
+  useEffect(function () {
+    const el = document.querySelector(".search");
+    console.log(el);
+    el.focus();
+  }, []);
+
   return (
     <input
       className="search"
@@ -7,5 +15,5 @@ export function Search({ query, setQuery }) {
       value={query}
       onChange={(e) => setQuery(e.target.value)}
     />
-  )
+  );
 }
